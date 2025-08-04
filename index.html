@@ -1,106 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chandramohan | AI & ML Student</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0a0a0a;
-      color: #fff;
-    }
-    header {
-      background: #1f1f1f;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 2px solid #0ff;
-    }
-    nav a {
-      margin: 0 15px;
-      color: #0ff;
-      text-decoration: none;
-    }
-    section {
-      padding: 50px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    h1, h2 {
-      color: #0ff;
-    }
-    .project {
-      margin-bottom: 20px;
-      padding: 10px;
-      background: #1e1e1e;
-      border-left: 4px solid #0ff;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #1f1f1f;
-      color: #aaa;
-    }
-  </style>
+  <title>Gemini Chatbot</title>
 </head>
 <body>
+  <h1>Talk to Gemini!</h1>
+  <input id="msg" placeholder="Ask something..." />
+  <button onclick="ask()">Send</button>
+  <pre id="res"></pre>
 
-  <header>
-    <h1>Chandramohan M (CM)</h1>
-    <p>AI & ML Student | Creative Developer | Tamil Nadu</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <section id="about">
-    <h2>👋 About Me</h2>
-    <p>I'm a passionate AI & ML student from Tamil Nadu, currently in my 3rd year. I build smart digital products using AI, web technologies, and creative design. I love to combine art with code to make meaningful projects.</p>
-  </section>
-
-  <section id="skills">
-    <h2>🧠 Skills</h2>
-    <ul>
-      <li>Programming: Python, JavaScript, Node.js</li>
-      <li>Frontend: HTML, CSS, React, Tailwind CSS</li>
-      <li>Tools: Canva, ChatGPT, Figma, AI Art, 3D Modeling</li>
-      <li>Others: Video Editing, Prompt Engineering, Freelancing</li>
-    </ul>
-  </section>
-
-  <section id="projects">
-    <h2>🚀 Projects</h2>
-
-    <div class="project">
-      <h3>Promptify - AI Prompt Generator</h3>
-      <p>An advanced AI prompt generator with beautiful UI and multiple category support.</p>
-    </div>
-
-    <div class="project">
-      <h3>TN Resume & Job App</h3>
-      <p>A free resume and job search tool made for Tamil Nadu people. Supports AdMob & premium features.</p>
-    </div>
-
-    <div class="project">
-      <h3>Text-to-Audio Converter</h3>
-      <p>Convert text into speech with multi-language support using Gemini API.</p>
-    </div>
-  </section>
-
-  <section id="contact">
-    <h2>📬 Contact Me</h2>
-    <p>Email: chandramohanm2005@gmail.com</p>
-    <p>GitHub: <a href="https://github.com/Chandramohan-us" target="_blank">Chandramohan-us</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/chandramohan-m-09545935b/" target="_blank">chandramohan-m</a></p>
-  </section>
-
-  <footer>
-    <p>Made with ❤️ by CM | © 2025</p>
-  </footer>
-
+  <script>
+    async function ask() {
+      const input = document.getElementById("msg").value;
+      const res = await fetch("https://YOUR-N8N-URL/webhook/chatbot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input })
+      });
+      const data = await res.json();
+      document.getElementById("res").innerText = "Bot: " + data.reply;
+    }
+  </script>
 </body>
 </html>
